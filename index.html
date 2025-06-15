@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mindful Meals Expert - AI-Powered Diet Recommendations</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="description" content="Get personalized nutrition guidance from AI analysis and expert dietitians. Upload medical reports for tailored recommendations." />
+    <meta name="author" content="DietAI" />
+
+    <meta property="og:title" content="DietAI - AI-Powered Diet Recommendations" />
+    <meta property="og:description" content="Get personalized nutrition guidance from AI analysis and expert dietitians." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@lovable_dev" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+  </head>
+
+  <body class="min-h-screen">
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="/" class="nav-logo">Mindful Meals Expert</a>
+        <div class="nav-links">
+          <a href="/recipes.html">Recipes</a>
+          <a href="/about.html">About</a>
+          <a href="/medical-analysis.html">Medical Analysis</a>
+          <button class="btn btn-outline" onclick="openAuthModal('login', 'user')">Login</button>
+          <button class="btn btn-primary" onclick="openAuthModal('signup', 'user')">Sign Up</button>
+        </div>
+        <button class="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-text">
+            <h1>AI-Powered Diet Recommendations</h1>
+            <p>Get personalized nutrition guidance from AI analysis and expert dietitians. Upload your medical reports for tailored recommendations that fit your unique health profile.</p>
+            <div class="hero-buttons">
+              <button class="btn btn-primary btn-lg" onclick="openAuthModal('signup', 'user')">Start Your Journey</button>
+              <button class="btn btn-outline btn-lg" onclick="openAuthModal('login', 'expert')">Expert Login</button>
+            </div>
+          </div>
+          <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=600&h=600&fit=crop" alt="Healthy food">
+            <div class="heart-icon">
+              <i class="fas fa-heart"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+      <div class="container">
+        <div class="section-header">
+          <h2>Why Choose Our Platform?</h2>
+          <p>Comprehensive health assessment meets cutting-edge AI technology</p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-user"></i>
+            </div>
+            <h3>Personalized Assessment</h3>
+            <p>Complete health and dietary assessment tailored to your needs</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-stethoscope"></i>
+            </div>
+            <h3>Medical Report Analysis</h3>
+            <p>AI-powered analysis of your medical reports for accurate recommendations</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-utensils"></i>
+            </div>
+            <h3>Healthy Recipes</h3>
+            <p>Curated collection of nutritious and delicious recipes</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-comments"></i>
+            </div>
+            <h3>Expert Consultation</h3>
+            <p>Direct communication with certified nutrition experts</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews">
+      <div class="container">
+        <div class="section-header">
+          <h2>What Our Users Say</h2>
+          <p>Real stories from people who transformed their health</p>
+        </div>
+        <div class="reviews-grid">
+          <div class="review-card">
+            <div class="rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p>"This platform completely transformed my relationship with food. The personalized recommendations were spot-on!"</p>
+            <h4>- Sarah Johnson</h4>
+          </div>
+          <div class="review-card">
+            <div class="rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p>"As a healthcare professional, I'm impressed by the thorough assessment process and evidence-based recommendations."</p>
+            <h4>- Dr. Michael Chen</h4>
+          </div>
+          <div class="review-card">
+            <div class="rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p>"The expert consultation feature is amazing. Got answers to all my nutrition questions quickly!"</p>
+            <h4>- Emily Rodriguez</h4>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+      <div class="container">
+        <h2>Ready to Transform Your Health?</h2>
+        <p>Join thousands who have already started their journey to better nutrition</p>
+        <button class="btn btn-white btn-lg" onclick="openAuthModal('signup', 'user')">Get Started Today</button>
+      </div>
+    </section>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div class="auth-container">
+          <div class="auth-tabs">
+            <button class="auth-tab-btn active" data-tab="user">User</button>
+            <button class="auth-tab-btn" data-tab="expert">Expert</button>
+          </div>
+          
+          <!-- User Auth Form -->
+          <div class="auth-form active" id="userAuthForm">
+            <h2 id="userModalTitle">User Login</h2>
+            <form id="loginForm" class="login-form">
+              <div class="form-group">
+                <label for="email">Email</label>
+                <div class="input-group">
+                  <i class="fas fa-envelope"></i>
+                  <input type="email" id="email" name="email" value="tushar.tyagi@example.com" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <div class="input-group">
+                  <i class="fas fa-lock"></i>
+                  <input type="password" id="password" name="password" value="tushar@12341234" required>
+                  <button type="button" class="toggle-password" onclick="togglePassword()">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">
+                <i class="fas fa-sign-in-alt"></i>
+                Login
+              </button>
+            </form>
+            <div class="login-footer">
+              <p>Demo Credentials:</p>
+              <p>Email: tushar.tyagi@example.com</p>
+              <p>Password: tushar@12341234</p>
+            </div>
+            <p class="switch-mode-text">
+              Don't have an account? 
+              <a href="#" onclick="switchAuthMode('user')">Sign up</a>
+            </p>
+          </div>
+
+          <!-- Expert Auth Form -->
+          <div class="auth-form" id="expertAuthForm">
+            <h2 id="expertModalTitle">Expert Login</h2>
+            <form onsubmit="handleAuth(event, 'expert')">
+              <div class="form-group">
+                <label for="expertEmail">Email</label>
+                <input type="email" id="expertEmail" required>
+              </div>
+              <div class="form-group">
+                <label for="expertPassword">Password</label>
+                <input type="password" id="expertPassword" required>
+              </div>
+              <div class="form-group expert-fields">
+                <label for="expertLicense">License Number</label>
+                <input type="text" id="expertLicense" required>
+              </div>
+              <div class="form-group expert-fields">
+                <label for="expertSpecialization">Specialization</label>
+                <select id="expertSpecialization" required>
+                  <option value="">Select Specialization</option>
+                  <option value="nutritionist">Nutritionist</option>
+                  <option value="dietitian">Dietitian</option>
+                  <option value="health-coach">Health Coach</option>
+                  <option value="fitness-trainer">Fitness Trainer</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">Login</button>
+            </form>
+            <p class="switch-mode-text">
+              Don't have an expert account? 
+              <a href="#" onclick="switchAuthMode('expert')">Sign up</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const loginForm = document.getElementById('loginForm');
+        
+        loginForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          
+          const email = document.getElementById('email').value;
+          const password = document.getElementById('password').value;
+          
+          try {
+            const response = await fetch('/api/auth/login', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ email, password })
+            });
+            
+            if (response.ok) {
+              const data = await response.json();
+              localStorage.setItem('userToken', data.token);
+              localStorage.setItem('userType', data.type);
+              window.location.href = '/user-dashboard.html';
+            } else {
+              showError('Invalid credentials');
+            }
+          } catch (error) {
+            console.error('Login error:', error);
+            showError('Failed to login. Please try again.');
+          }
+        });
+      });
+
+      function togglePassword() {
+        const passwordInput = document.getElementById('password');
+        const toggleBtn = document.querySelector('.toggle-password i');
+        
+        if (passwordInput.type === 'password') {
+          passwordInput.type = 'text';
+          toggleBtn.classList.replace('fa-eye', 'fa-eye-slash');
+        } else {
+          passwordInput.type = 'password';
+          toggleBtn.classList.replace('fa-eye-slash', 'fa-eye');
+        }
+      }
+
+      function showError(message) {
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message';
+        errorDiv.textContent = message;
+        
+        const form = document.getElementById('loginForm');
+        form.insertBefore(errorDiv, form.firstChild);
+        
+        setTimeout(() => {
+          errorDiv.remove();
+        }, 3000);
+      }
+    </script>
+  </body>
+</html>

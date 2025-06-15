@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthy Recipes - Mindful Meals Expert</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/recipes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">Mindful Meals Expert</a>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/recipes.html" class="nav-link active">Recipes</a>
+                <a href="/about.html" class="nav-link">About</a>
+                <a href="/medical-analysis.html" class="nav-link">Medical Analysis</a>
+                <button class="btn btn-outline" onclick="openAuthModal('login', 'user')">Login</button>
+                <button class="btn btn-primary" onclick="openAuthModal('signup', 'user')">Sign Up</button>
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Recipe Search Section -->
+    <section class="recipe-search">
+        <div class="container">
+            <h1>Healthy Recipes</h1>
+            <p>Discover delicious and nutritious recipes tailored to your dietary needs</p>
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search recipes..." id="recipeSearch">
+                </div>
+                <div class="filter-container">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="vegetarian">Vegetarian</button>
+                    <button class="filter-btn" data-filter="vegan">Vegan</button>
+                    <button class="filter-btn" data-filter="gluten-free">Gluten Free</button>
+                    <button class="filter-btn" data-filter="low-carb">Low Carb</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recipes Grid -->
+    <section class="recipes-grid">
+        <div class="container">
+            <div class="recipes-container" id="recipesContainer">
+                <!-- Recipe cards will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="auth-container">
+                <div class="auth-tabs">
+                    <button class="auth-tab-btn active" data-tab="user">User</button>
+                    <button class="auth-tab-btn" data-tab="expert">Expert</button>
+                </div>
+                
+                <!-- User Auth Form -->
+                <div class="auth-form active" id="userAuthForm">
+                    <h2 id="userModalTitle">User Login</h2>
+                    <form onsubmit="handleAuth(event, 'user')">
+                        <div class="form-group">
+                            <label for="userEmail">Email</label>
+                            <input type="email" id="userEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="userPassword">Password</label>
+                            <input type="password" id="userPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                    </form>
+                    <p class="switch-mode-text">
+                        Don't have an account? 
+                        <a href="#" onclick="switchAuthMode('user')">Sign up</a>
+                    </p>
+                </div>
+
+                <!-- Expert Auth Form -->
+                <div class="auth-form" id="expertAuthForm">
+                    <h2 id="expertModalTitle">Expert Login</h2>
+                    <form onsubmit="handleAuth(event, 'expert')">
+                        <div class="form-group">
+                            <label for="expertEmail">Email</label>
+                            <input type="email" id="expertEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="expertPassword">Password</label>
+                            <input type="password" id="expertPassword" required>
+                        </div>
+                        <div class="form-group expert-fields">
+                            <label for="expertLicense">License Number</label>
+                            <input type="text" id="expertLicense" required>
+                        </div>
+                        <div class="form-group expert-fields">
+                            <label for="expertSpecialization">Specialization</label>
+                            <select id="expertSpecialization" required>
+                                <option value="">Select Specialization</option>
+                                <option value="nutritionist">Nutritionist</option>
+                                <option value="dietitian">Dietitian</option>
+                                <option value="health-coach">Health Coach</option>
+                                <option value="fitness-trainer">Fitness Trainer</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                    </form>
+                    <p class="switch-mode-text">
+                        Don't have an expert account? 
+                        <a href="#" onclick="switchAuthMode('expert')">Sign up</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/recipes.js"></script>
+</body>
+</html> 

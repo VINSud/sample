@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Mindful Meals Expert</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="dashboard-page">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">
+                <i class="fas fa-leaf"></i>
+                Mindful Meals Expert
+            </a>
+            <div class="nav-links">
+                <a href="/assessment.html" class="nav-link">
+                    <i class="fas fa-clipboard-check"></i>
+                    Assessment
+                </a>
+                <a href="/medical-upload.html" class="nav-link">
+                    <i class="fas fa-file-medical"></i>
+                    Reports
+                </a>
+                <a href="/diet-plan.html" class="nav-link">
+                    <i class="fas fa-utensils"></i>
+                    Diet Plan
+                </a>
+                <div class="user-menu">
+                    <button class="user-menu-btn" id="userMenuBtn">
+                        <i class="fas fa-user-circle"></i>
+                        <span id="userName">Tushar Tyagi</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="user-dropdown" id="userDropdown">
+                        <a href="/profile.html">
+                            <i class="fas fa-user-cog"></i>
+                            Profile Settings
+                        </a>
+                        <a href="#" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user-info">
+                    <h3 id="sidebarUserName">Tushar Tyagi</h3>
+                    <p class="user-status">Premium Member</p>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#overview" class="active">
+                    <i class="fas fa-home"></i>
+                    Overview
+                </a>
+                <a href="#health">
+                    <i class="fas fa-heartbeat"></i>
+                    Health Metrics
+                </a>
+                <a href="#nutrition">
+                    <i class="fas fa-apple-alt"></i>
+                    Nutrition
+                </a>
+                <a href="#progress">
+                    <i class="fas fa-chart-line"></i>
+                    Progress
+                </a>
+                <a href="#reports">
+                    <i class="fas fa-file-medical-alt"></i>
+                    Medical Reports
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Dashboard Content -->
+        <main class="dashboard-main">
+            <div class="dashboard-header">
+                <h1>Welcome Back, Tushar!</h1>
+                <p class="date">Today is <span id="currentDate"></span></p>
+            </div>
+
+            <!-- Quick Actions -->
+            <section class="quick-actions">
+                <div class="action-card assessment">
+                    <div class="action-icon">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <div class="action-content">
+                        <h3>Health Assessment</h3>
+                        <p>Complete your health assessment</p>
+                        <a href="/assessment.html" class="btn btn-primary">Start Assessment</a>
+                    </div>
+                </div>
+                <div class="action-card reports">
+                    <div class="action-icon">
+                        <i class="fas fa-file-medical"></i>
+                    </div>
+                    <div class="action-content">
+                        <h3>Medical Reports</h3>
+                        <p>Upload medical reports for analysis</p>
+                        <a href="/medical-upload.html" class="btn btn-primary">Upload Reports</a>
+                    </div>
+                </div>
+                <div class="action-card diet">
+                    <div class="action-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="action-content">
+                        <h3>Diet Plan</h3>
+                        <p>View your personalized meal plan</p>
+                        <a href="/diet-plan.html" class="btn btn-primary">View Plan</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Health Overview -->
+            <section class="health-overview">
+                <div class="section-header">
+                    <h2>Health Overview</h2>
+                    <button class="btn btn-outline" onclick="refreshHealthData()">
+                        <i class="fas fa-sync"></i>
+                        Refresh
+                    </button>
+                </div>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-icon">
+                            <i class="fas fa-weight"></i>
+                        </div>
+                        <div class="metric-data">
+                            <h4>Weight</h4>
+                            <p class="metric-value">75 kg</p>
+                            <span class="metric-trend positive">
+                                <i class="fas fa-arrow-down"></i>
+                                2.3%
+                            </span>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <div class="metric-data">
+                            <h4>Blood Sugar</h4>
+                            <p class="metric-value">95 mg/dL</p>
+                            <span class="metric-trend stable">
+                                <i class="fas fa-equals"></i>
+                                Stable
+                            </span>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <div class="metric-data">
+                            <h4>Blood Pressure</h4>
+                            <p class="metric-value">120/80</p>
+                            <span class="metric-trend positive">
+                                <i class="fas fa-check"></i>
+                                Normal
+                            </span>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">
+                            <i class="fas fa-running"></i>
+                        </div>
+                        <div class="metric-data">
+                            <h4>BMI</h4>
+                            <p class="metric-value">23.5</p>
+                            <span class="metric-trend positive">
+                                <i class="fas fa-check"></i>
+                                Healthy
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Nutrition Progress -->
+            <section class="nutrition-progress">
+                <div class="section-header">
+                    <h2>Nutrition Progress</h2>
+                    <div class="date-selector">
+                        <button class="btn btn-outline active">Week</button>
+                        <button class="btn btn-outline">Month</button>
+                        <button class="btn btn-outline">Year</button>
+                    </div>
+                </div>
+                <div class="progress-charts">
+                    <div class="chart-container">
+                        <canvas id="caloriesChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="nutrientsChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Activity -->
+            <section class="recent-activity">
+                <div class="section-header">
+                    <h2>Recent Activity</h2>
+                    <a href="#" class="btn btn-text">View All</a>
+                </div>
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-clipboard-check"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4>Health Assessment</h4>
+                            <p>Completed initial health assessment</p>
+                            <span class="activity-time">2 hours ago</span>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-file-medical"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4>Medical Report</h4>
+                            <p>Uploaded blood test results</p>
+                            <span class="activity-time">Jun 14</span>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4>Diet Plan</h4>
+                            <p>Updated meal preferences</p>
+                            <span class="activity-time">Jun 13</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Right Sidebar -->
+        <aside class="dashboard-right-sidebar">
+            <!-- Today's Summary -->
+            <section class="today-summary">
+                <h3>Today's Summary</h3>
+                <div class="summary-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-fire"></i>
+                        <div class="stat-data">
+                            <p>Calories</p>
+                            <h4>1,850 / 2,200</h4>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 84%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-glass-water"></i>
+                        <div class="stat-data">
+                            <p>Water</p>
+                            <h4>1.8L / 2.5L</h4>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 72%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-walking"></i>
+                        <div class="stat-data">
+                            <p>Steps</p>
+                            <h4>7,234 / 10,000</h4>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 72%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Upcoming Meals -->
+            <section class="upcoming-meals">
+                <h3>Today's Meals</h3>
+                <div class="meal-list">
+                    <div class="meal-item completed">
+                        <div class="meal-time">
+                            <i class="fas fa-check-circle"></i>
+                            <span>8:00 AM</span>
+                        </div>
+                        <div class="meal-content">
+                            <h4>Breakfast</h4>
+                            <p>Oatmeal with fruits and nuts</p>
+                            <span class="meal-calories">320 cal</span>
+                        </div>
+                    </div>
+                    <div class="meal-item active">
+                        <div class="meal-time">
+                            <i class="fas fa-clock"></i>
+                            <span>1:00 PM</span>
+                        </div>
+                        <div class="meal-content">
+                            <h4>Lunch</h4>
+                            <p>Grilled chicken salad</p>
+                            <span class="meal-calories">450 cal</span>
+                        </div>
+                    </div>
+                    <div class="meal-item">
+                        <div class="meal-time">
+                            <i class="far fa-circle"></i>
+                            <span>4:00 PM</span>
+                        </div>
+                        <div class="meal-content">
+                            <h4>Snack</h4>
+                            <p>Greek yogurt with honey</p>
+                            <span class="meal-calories">150 cal</span>
+                        </div>
+                    </div>
+                    <div class="meal-item">
+                        <div class="meal-time">
+                            <i class="far fa-circle"></i>
+                            <span>7:30 PM</span>
+                        </div>
+                        <div class="meal-content">
+                            <h4>Dinner</h4>
+                            <p>Baked salmon with vegetables</p>
+                            <span class="meal-calories">520 cal</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </aside>
+    </div>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html> 

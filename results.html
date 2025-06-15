@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Diet Plan - Mindful Meals Expert</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/results.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">Mindful Meals Expert</a>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/recipes.html" class="nav-link">Recipes</a>
+                <a href="/assessment.html" class="nav-link">Assessment</a>
+                <a href="/about.html" class="nav-link">About</a>
+                <div id="userSection" style="display: none;">
+                    <button class="btn btn-outline" onclick="logout()">Logout</button>
+                </div>
+                <div id="authSection">
+                    <button class="btn btn-outline" onclick="openAuthModal('login', 'user')">Login</button>
+                    <button class="btn btn-primary" onclick="openAuthModal('signup', 'user')">Sign Up</button>
+                </div>
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Results Section -->
+    <section class="results-section">
+        <div class="container">
+            <div class="results-header">
+                <h1>Your Personalized Diet Plan</h1>
+                <p class="section-description">Based on your health assessment and medical data</p>
+            </div>
+
+            <div class="results-container">
+                <!-- User Profile Summary -->
+                <div class="profile-summary">
+                    <h2>Your Profile</h2>
+                    <div class="profile-grid" id="profileSummary">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Diet Plan -->
+                <div class="diet-plan">
+                    <h2>7-Day Meal Plan</h2>
+                    <div class="meal-plan-container" id="mealPlan">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Guidelines -->
+                <div class="guidelines">
+                    <h2>Dietary Guidelines</h2>
+                    <div class="guidelines-content" id="guidelines">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="downloadPDF()">
+                        <i class="fas fa-download"></i> Download Plan
+                    </button>
+                    <button class="btn btn-outline" onclick="window.print()">
+                        <i class="fas fa-print"></i> Print Plan
+                    </button>
+                    <button class="btn btn-outline" onclick="shareResults()">
+                        <i class="fas fa-share-alt"></i> Share
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Share Modal -->
+    <div id="shareModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Share Your Diet Plan</h2>
+            <div class="share-options">
+                <button class="share-btn" onclick="shareTo('email')">
+                    <i class="fas fa-envelope"></i> Email
+                </button>
+                <button class="share-btn" onclick="shareTo('whatsapp')">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </button>
+                <button class="share-btn" onclick="shareTo('telegram')">
+                    <i class="fab fa-telegram"></i> Telegram
+                </button>
+            </div>
+            <div class="share-link">
+                <input type="text" id="shareLink" readonly>
+                <button class="btn btn-outline" onclick="copyLink()">
+                    <i class="fas fa-copy"></i> Copy
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p id="loadingText">Loading your diet plan...</p>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/results.js"></script>
+</body>
+</html> 

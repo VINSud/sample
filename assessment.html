@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Assessment - Mindful Meals Expert</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/assessment.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">Mindful Meals Expert</a>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/recipes.html" class="nav-link">Recipes</a>
+                <a href="/assessment.html" class="nav-link active">Assessment</a>
+                <a href="/about.html" class="nav-link">About</a>
+                <div id="userSection" style="display: none;">
+                    <button class="btn btn-outline" onclick="logout()">Logout</button>
+                </div>
+                <div id="authSection">
+                    <button class="btn btn-outline" onclick="openAuthModal('login', 'user')">Login</button>
+                    <button class="btn btn-primary" onclick="openAuthModal('signup', 'user')">Sign Up</button>
+                </div>
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Assessment Form -->
+    <section class="assessment-section">
+        <div class="container">
+            <h1>Health Assessment</h1>
+            <p class="section-description">Complete your health profile for personalized diet recommendations</p>
+
+            <div class="assessment-form">
+                <form id="healthAssessmentForm" onsubmit="handleAssessmentSubmit(event)">
+                    <!-- Personal Information -->
+                    <div class="form-section">
+                        <h2>Personal Information</h2>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="age">Age</label>
+                                <input type="number" id="age" required min="1" max="120">
+                            </div>
+                            <div class="form-group">
+                                <label for="gender">Gender</label>
+                                <select id="gender" required>
+                                    <option value="">Select Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="weight">Weight (kg)</label>
+                                <input type="number" id="weight" required step="0.1" min="20" max="300">
+                            </div>
+                            <div class="form-group">
+                                <label for="height">Height (cm)</label>
+                                <input type="number" id="height" required min="100" max="250">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Medical Report Upload -->
+                    <div class="form-section">
+                        <h2>Medical Report</h2>
+                        <div class="upload-container">
+                            <div class="upload-box" id="uploadBox">
+                                <i class="fas fa-file-medical"></i>
+                                <p>Drag & drop your medical report here or click to upload</p>
+                                <p class="upload-info">(Supported formats: PDF, JPG, PNG - Max 5MB)</p>
+                                <input type="file" id="medicalReport" accept=".pdf,.jpg,.jpeg,.png" hidden>
+                            </div>
+                            <div id="uploadPreview" class="upload-preview" style="display: none;">
+                                <div class="preview-content">
+                                    <i class="fas fa-file-alt"></i>
+                                    <span id="fileName">filename.pdf</span>
+                                    <button type="button" class="remove-file" onclick="removeFile()">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="ocrResults" class="ocr-results" style="display: none;">
+                            <h3>Extracted Medical Data</h3>
+                            <div id="ocrData" class="ocr-data"></div>
+                            <button type="button" class="btn btn-outline" onclick="editOCRData()">
+                                Edit Data
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Dietary Preferences -->
+                    <div class="form-section">
+                        <h2>Dietary Preferences</h2>
+                        <div class="form-group">
+                            <label for="dietType">Diet Type</label>
+                            <select id="dietType" required>
+                                <option value="">Select Diet Type</option>
+                                <option value="omnivore">Omnivore</option>
+                                <option value="vegetarian">Vegetarian</option>
+                                <option value="vegan">Vegan</option>
+                                <option value="pescatarian">Pescatarian</option>
+                                <option value="keto">Keto</option>
+                                <option value="paleo">Paleo</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="allergies">Food Allergies</label>
+                            <input type="text" id="allergies" placeholder="e.g., nuts, dairy, shellfish">
+                        </div>
+                        <div class="form-group">
+                            <label for="preferences">Food Preferences/Restrictions</label>
+                            <textarea id="preferences" rows="3" placeholder="Enter any specific food preferences or restrictions"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Lifestyle Information -->
+                    <div class="form-section">
+                        <h2>Lifestyle</h2>
+                        <div class="form-group">
+                            <label for="activityLevel">Activity Level</label>
+                            <select id="activityLevel" required>
+                                <option value="">Select Activity Level</option>
+                                <option value="sedentary">Sedentary (little or no exercise)</option>
+                                <option value="light">Lightly active (light exercise 1-3 days/week)</option>
+                                <option value="moderate">Moderately active (moderate exercise 3-5 days/week)</option>
+                                <option value="very">Very active (hard exercise 6-7 days/week)</option>
+                                <option value="extra">Extra active (very hard exercise & physical job)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="goals">Health Goals</label>
+                            <select id="goals" required>
+                                <option value="">Select Primary Goal</option>
+                                <option value="weight-loss">Weight Loss</option>
+                                <option value="weight-gain">Weight Gain</option>
+                                <option value="maintenance">Weight Maintenance</option>
+                                <option value="muscle">Muscle Gain</option>
+                                <option value="health">General Health Improvement</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="stress">Stress Level</label>
+                            <select id="stress" required>
+                                <option value="">Select Stress Level</option>
+                                <option value="low">Low</option>
+                                <option value="moderate">Moderate</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg">Generate Diet Recommendation</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p id="loadingText">Processing your information...</p>
+        </div>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="auth-container">
+                <div class="auth-tabs">
+                    <button class="auth-tab-btn active" data-tab="user">User</button>
+                    <button class="auth-tab-btn" data-tab="expert">Expert</button>
+                </div>
+                
+                <!-- User Auth Form -->
+                <div class="auth-form active" id="userAuthForm">
+                    <h2 id="userModalTitle">User Login</h2>
+                    <form onsubmit="handleAuth(event, 'user')">
+                        <div class="form-group">
+                            <label for="userEmail">Email</label>
+                            <input type="email" id="userEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="userPassword">Password</label>
+                            <input type="password" id="userPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                    </form>
+                    <p class="switch-mode-text">
+                        Don't have an account? 
+                        <a href="#" onclick="switchAuthMode('user')">Sign up</a>
+                    </p>
+                </div>
+
+                <!-- Expert Auth Form -->
+                <div class="auth-form" id="expertAuthForm">
+                    <h2 id="expertModalTitle">Expert Login</h2>
+                    <form onsubmit="handleAuth(event, 'expert')">
+                        <div class="form-group">
+                            <label for="expertEmail">Email</label>
+                            <input type="email" id="expertEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="expertPassword">Password</label>
+                            <input type="password" id="expertPassword" required>
+                        </div>
+                        <div class="form-group expert-fields">
+                            <label for="expertLicense">License Number</label>
+                            <input type="text" id="expertLicense" required>
+                        </div>
+                        <div class="form-group expert-fields">
+                            <label for="expertSpecialization">Specialization</label>
+                            <select id="expertSpecialization" required>
+                                <option value="">Select Specialization</option>
+                                <option value="nutritionist">Nutritionist</option>
+                                <option value="dietitian">Dietitian</option>
+                                <option value="health-coach">Health Coach</option>
+                                <option value="fitness-trainer">Fitness Trainer</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                    </form>
+                    <p class="switch-mode-text">
+                        Don't have an expert account? 
+                        <a href="#" onclick="switchAuthMode('expert')">Sign up</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/assessment.js"></script>
+</body>
+</html> 

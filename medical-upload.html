@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Medical Reports - Mindful Meals Expert</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="dashboard-page">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">Mindful Meals Expert</a>
+            <div class="nav-links">
+                <a href="/user-dashboard.html">Dashboard</a>
+                <a href="/assessment.html">Assessment</a>
+                <a href="/recipes.html">Recipes</a>
+                <button class="btn btn-outline" onclick="logout()">Logout</button>
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="upload-section">
+            <h1>Upload Medical Reports</h1>
+            <p>Upload your medical reports for AI analysis and personalized diet recommendations.</p>
+
+            <div class="upload-container">
+                <form id="uploadForm" class="upload-form">
+                    <div class="file-drop-area" id="dropArea">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag and drop your files here or</p>
+                        <input type="file" id="fileInput" accept="image/*,.pdf" multiple hidden>
+                        <button type="button" class="btn btn-primary" onclick="document.getElementById('fileInput').click()">
+                            Choose Files
+                        </button>
+                    </div>
+
+                    <div id="fileList" class="file-list"></div>
+
+                    <div class="upload-options">
+                        <h3>Report Types</h3>
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" name="reportType" value="blood"> Blood Test
+                            </label>
+                            <label>
+                                <input type="checkbox" name="reportType" value="thyroid"> Thyroid
+                            </label>
+                            <label>
+                                <input type="checkbox" name="reportType" value="diabetes"> Diabetes
+                            </label>
+                            <label>
+                                <input type="checkbox" name="reportType" value="lipid"> Lipid Profile
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg" id="uploadButton">
+                        Analyze Reports
+                    </button>
+                </form>
+            </div>
+
+            <!-- Analysis Results -->
+            <div id="analysisResults" class="analysis-results" style="display: none;">
+                <h2>Analysis Results</h2>
+                <div class="results-grid">
+                    <div class="result-card">
+                        <h3>Key Findings</h3>
+                        <ul id="keyFindings"></ul>
+                    </div>
+                    <div class="result-card">
+                        <h3>Recommendations</h3>
+                        <ul id="recommendations"></ul>
+                    </div>
+                </div>
+
+                <div class="diet-plan-section">
+                    <h3>Personalized Diet Plan</h3>
+                    <div id="dietPlan"></div>
+                    <button class="btn btn-primary" onclick="downloadDietPlan()">
+                        Download Diet Plan
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/medical-upload.js"></script>
+</body>
+</html> 
